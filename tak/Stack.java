@@ -43,6 +43,12 @@ public class Stack {
 		this(action.player, action.orientation);
 	}
 	
+	public Stack(Stack stack) {
+		this.bits = stack.bits;
+		this.height = stack.height;
+		this.state = stack.state;
+	}
+	
 	public static int mask(int n) {
 		return ~(-1 << n);
 	}
@@ -110,5 +116,15 @@ public class Stack {
 		}
 		
 		return dropped;
+	}
+	
+	@Override
+	public String toString() {
+		return (height > 0 ? getController().ordinal() : " ") + (height > 1 ? "+" : " ");
+	}
+	
+	@Override
+	public Stack clone() {
+		return new Stack(this);
 	}
 }
